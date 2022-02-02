@@ -45,9 +45,70 @@ private:
 	/// <returns>Whether or not a node matching the value could be found</returns>
 	bool findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent);
 
-	void draw(TreeNode<T>*, int x, int y, int horizontalSpacing, TreeNode<T>* selected = nullptr);
+	void draw(TreeNode<T>* currentNode, int x, int y, int horizontalSpacing, TreeNode<T>* selected = nullptr);
 
 	TreeNode<T>* m_root = nullptr;
 };
 
 #endif
+
+template<typename T>
+inline bool BinaryTree<T>::isEmpty() const
+{
+	return false;
+}
+
+template<typename T>
+inline void BinaryTree<T>::insert(T value)
+{
+}
+
+template<typename T>
+inline void BinaryTree<T>::remove(T value)
+{
+}
+
+template<typename T>
+inline TreeNode<T>* BinaryTree<T>::find(T value)
+{
+	return NULL;
+}
+
+template<typename T>
+inline void BinaryTree<T>::draw(TreeNode<T>* selected)
+{
+		
+}
+
+template<typename T>
+inline void BinaryTree<T>::draw(TreeNode<T>* currentNode, int x, int y, int horizontalSpacing, TreeNode<T>* selected)
+{
+	//decreases the horizontal space 
+	horizontalSpacing /= 2;
+
+	//Chceks if the current node is null
+	if(currentNode)
+	{
+		//Draws the left child of the node has one
+		if (currentNode->hasLeft())
+		{
+			//Draw the horizontal space between the child and current node
+			drawLine(x, y, x - horizontalSpacing, y + 80, RED);
+
+			//draws the left child
+			draw(currentNode->getLeft(), x - horizontalSpacing, y + 80, horizontalSpacing, selected);
+		}
+
+		//Draws the right child of the node has one
+		if (currentNode->hasRight())
+		{
+			//Draw the horizontal space between the child and current node
+			drawLine(x, y, x - horizontalSpacing, y + 80, RED);
+
+			//draws the right child
+			draw(currentNode->getLeft(), x - horizontalSpacing, y + 80, horizontalSpacing, selected);
+		}
+		//Draws the current node
+		currentNode->draw(x, y, (selected == currentNode));
+	}
+}

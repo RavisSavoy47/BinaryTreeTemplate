@@ -58,5 +58,24 @@ private:
 	TreeNode<T>* m_right;
 };
 
+template<typename T>
+inline void TreeNode<T>::draw(int x, int y, bool selected)
+{
+	//Creates an array for the value
+	static char buffer[10];
 
+	//Converts the values to string and stores it in the array
+	sprintf(buffer, "%d", m_value);
 
+	//Draws the circle to represent the node
+	DrawCircle(x, y, 30, YELLOW);
+
+	//If the node is current selected node changes color
+	if (selected)
+		DrawCircle(x, y, 28, GREEN);
+	else
+		DrawCircle(x, y, 28, BLACK);
+
+	//Draws the value of the node inside the circle
+	DrawText(buffer, x - 12, y - 12, 12, WHITE);
+}
