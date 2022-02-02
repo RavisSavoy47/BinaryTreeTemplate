@@ -53,14 +53,34 @@ private:
 #endif
 
 template<typename T>
+inline BinaryTree<T>::BinaryTree()
+{
+}
+
+template<typename T>
+inline BinaryTree<T>::~BinaryTree()
+{
+}
+
+template<typename T>
 inline bool BinaryTree<T>::isEmpty() const
 {
-	return false;
+	return m_root <= 0;
 }
 
 template<typename T>
 inline void BinaryTree<T>::insert(T value)
 {
+	TreeNode<T>* newNode = new TreeNode<T>(value);
+	if (newNode < m_root)
+	{
+
+	}
+	if (newNode > m_root)
+	{
+
+	}
+
 }
 
 template<typename T>
@@ -78,6 +98,12 @@ template<typename T>
 inline void BinaryTree<T>::draw(TreeNode<T>* selected)
 {
 		
+}
+
+template<typename T>
+inline bool BinaryTree<T>::findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent)
+{
+	return false;
 }
 
 template<typename T>

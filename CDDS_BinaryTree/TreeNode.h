@@ -59,6 +59,12 @@ private:
 };
 
 template<typename T>
+inline void TreeNode<T>::setRight(TreeNode<T>* node)
+{
+
+}
+
+template<typename T>
 inline void TreeNode<T>::draw(int x, int y, bool selected)
 {
 	//Creates an array for the value
@@ -78,4 +84,50 @@ inline void TreeNode<T>::draw(int x, int y, bool selected)
 
 	//Draws the value of the node inside the circle
 	DrawText(buffer, x - 12, y - 12, 12, WHITE);
+}
+
+template<typename T>
+inline TreeNode<T>::TreeNode(T value)
+{
+
+}
+
+template<typename T>
+inline bool TreeNode<T>::hasLeft()
+{
+	return false;
+}
+
+template<typename T>
+inline bool TreeNode<T>::hasRight()
+{
+	return false;
+}
+
+template<typename T>
+inline T TreeNode<T>::getData()
+{
+	return T();
+}
+
+template<typename T>
+inline TreeNode<T>* TreeNode<T>::getLeft()
+{
+	return NULL;
+}
+
+template<typename T>
+inline TreeNode<T>* TreeNode<T>::getRight()
+{
+	return NULL;
+}
+
+template<typename T>
+inline void TreeNode<T>::setData(T value)
+{
+}
+
+template<typename T>
+inline void TreeNode<T>::setLeft(TreeNode<T>* node)
+{
 }
