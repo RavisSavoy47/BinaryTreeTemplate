@@ -72,20 +72,45 @@ template<typename T>
 inline void BinaryTree<T>::insert(T value)
 {
 	TreeNode<T>* newNode = new TreeNode<T>(value);
-	if (newNode < m_root)
-	{
+	TreeNode<T>* tempNode = m_root;
 
-	}
-	if (newNode > m_root)
+	if (m_root != nullptr)
 	{
+		if (newNode->getData() < tempNode->getData())
+		{
+			if (tempNode->getLeft() != nullptr)
+			{
+				tempNode->setLeft(newNode);
+			}
+			else
+			{
 
+			}
+		}
+		if (newNode->getData() > m_root->getData())
+		{
+			if (tempNode->getRight() != nullptr)
+			{
+				tempNode->setRight(newNode);
+			}
+			else
+			{
+				
+			}
+		}
 	}
+	else
+	{
+		m_root = newNode;
+	}
+
 
 }
 
 template<typename T>
 inline void BinaryTree<T>::remove(T value)
 {
+
 }
 
 template<typename T>
