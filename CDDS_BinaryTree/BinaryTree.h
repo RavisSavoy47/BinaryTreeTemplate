@@ -60,51 +60,58 @@ inline BinaryTree<T>::BinaryTree()
 template<typename T>
 inline BinaryTree<T>::~BinaryTree()
 {
+	m_root = new TreeNode<T>();
 }
 
 template<typename T>
 inline bool BinaryTree<T>::isEmpty() const
 {
-	return m_root <= 0;
+	return m_root == nullptr;
 }
 
 template<typename T>
 inline void BinaryTree<T>::insert(T value)
 {
 	TreeNode<T>* newNode = new TreeNode<T>(value);
-	TreeNode<T>* tempNode = m_root;
+	TreeNode<T>* currentNode = m_root;
+	bool nodeInserted = false;
 
-	if (m_root != nullptr)
-	{
-		if (newNode->getData() < tempNode->getData())
-		{
-			if (tempNode->getLeft() != nullptr)
-			{
-				tempNode->setLeft(newNode);
-			}
-			else
-			{
-
-			}
-		}
-		if (newNode->getData() > m_root->getData())
-		{
-			if (tempNode->getRight() != nullptr)
-			{
-				tempNode->setRight(newNode);
-			}
-			else
-			{
-				
-			}
-		}
-	}
-	else
+	if (m_root == nullptr)
 	{
 		m_root = newNode;
+		return;
 	}
 
+	while (!nodeInserted)
+	{
 
+		if (value > currentNode->getData())
+		{
+			if (currentNode->getRight())
+				currentNode = currentNode->getRight();
+
+			else
+			{
+				currentNode->setRight(newNode);
+				nodeInserted = true;
+			}
+		}
+
+		else if (value < currentNode->getData())
+		{
+			if (currentNode->getLeft())
+				currentNode = currentNode->getLeft();
+			else
+			{
+				currentNode->setLeft(newNode);
+				nodeInserted = true;
+			}
+		}
+		
+		else if (value == currentNode->getData())
+			return;
+	}
+	return;
 }
 
 template<typename T>
@@ -116,7 +123,25 @@ inline void BinaryTree<T>::remove(T value)
 template<typename T>
 inline TreeNode<T>* BinaryTree<T>::find(T value)
 {
-	return NULL;
+	if (value == NULL)
+		return nullptr;
+
+	TreeNode<T>* returnNode = m_root;
+
+	while (returnNode)
+	{
+		if (value < returnNode->getData())
+		{
+			returnNode = returnNode->getLeft();
+		}
+		else if (value > returnNode->getData())
+		{
+			returnNode = returnNode->getRight();
+		}
+		else if (returnNode->getData() == value)
+			return returnNode;
+	}
+	return returnNode;
 }
 
 template<typename T>
@@ -154,10 +179,10 @@ inline void BinaryTree<T>::draw(TreeNode<T>* currentNode, int x, int y, int hori
 		if (currentNode->hasRight())
 		{
 			//Draw the horizontal space between the child and current node
-			DrawLine(x, y, x - horizontalSpacing, y + 80, RED);
+			DrawLine(x, y, x + horizontalSpacing, y + 80, RED);
 
 			//draws the right child
-			draw(currentNode->getLeft(), x - horizontalSpacing, y + 80, horizontalSpacing, selected);
+			draw(currentNode->getRight(), x + horizontalSpacing, y + 80, horizontalSpacing, selected);
 		}
 		//Draws the current node
 		currentNode->draw(x, y, (selected == currentNode));

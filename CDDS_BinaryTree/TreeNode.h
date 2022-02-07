@@ -90,7 +90,7 @@ inline bool TreeNode<T>::hasLeft()
 template<typename T>
 inline bool TreeNode<T>::hasRight()
 {
-	if (m_left == nullptr)
+	if (m_right == nullptr)
 		return false;
 
 	return true;
@@ -123,21 +123,21 @@ inline void TreeNode<T>::setData(T value)
 template<typename T>
 inline void TreeNode<T>::draw(int x, int y, bool selected)
 {
-	//Creates an array for the value
+	//Creates an array to store the string representation of the value
 	static char buffer[10];
 
-	//Converts the values to string and stores it in the array
+	//Converts the value to a string and stores it in the array
 	sprintf(buffer, "%d", m_value);
 
 	//Draws the circle to represent the node
 	DrawCircle(x, y, 30, YELLOW);
 
-	//If the node is current selected node changes color
+	//If the the node is the current selected node change its color.
 	if (selected)
 		DrawCircle(x, y, 28, GREEN);
 	else
 		DrawCircle(x, y, 28, BLACK);
 
-	//Draws the value of the node inside the circle
+	//Draw the value of the node inside its circle
 	DrawText(buffer, x - 12, y - 12, 12, WHITE);
 }
