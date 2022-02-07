@@ -152,6 +152,7 @@ inline void BinaryTree<T>::remove(T value)
 		{
 			if (nodeToRemove->getRight())
 			{
+				nodeToRemove->setData(nodeToRemove->getData());
 
 			}
 		}
