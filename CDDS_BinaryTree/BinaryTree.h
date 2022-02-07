@@ -87,7 +87,7 @@ inline void BinaryTree<T>::insert(T value)
 
 		if (value > currentNode->getData())
 		{
-			if (currentNode->getRight())
+			if (currentNode->hasRight())
 				currentNode = currentNode->getRight();
 
 			else
@@ -99,7 +99,7 @@ inline void BinaryTree<T>::insert(T value)
 
 		else if (value < currentNode->getData())
 		{
-			if (currentNode->getLeft())
+			if (currentNode->hasLeft())
 				currentNode = currentNode->getLeft();
 			else
 			{
@@ -153,7 +153,25 @@ inline void BinaryTree<T>::draw(TreeNode<T>* selected)
 template<typename T>
 inline bool BinaryTree<T>::findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent)
 {
-	return false;
+	if (value == NULL)
+		return nullptr;
+
+	TreeNode<T>* returnNode = m_root;
+
+	while (returnNode)
+	{
+		if (value < returnNode->getData())
+		{
+			returnNode = returnNode->getLeft();
+		}
+		else if (value > returnNode->getData())
+		{
+			returnNode = returnNode->getRight();
+		}
+		else if (returnNode->getData() == value)
+			return returnNode;
+	}
+	return returnNode;
 }
 
 template<typename T>
