@@ -224,10 +224,6 @@ inline void BinaryTree<T>::remove(T value)
 template<typename T>
 inline TreeNode<T>* BinaryTree<T>::find(T value)
 {
-	//checks if the value is null
-	if (value == NULL)
-		return nullptr;
-
 	//sets the reutrnNode as the root
 	TreeNode<T>* returnNode = m_root;
 
@@ -262,8 +258,8 @@ inline void BinaryTree<T>::draw(TreeNode<T>* selected)
 template<typename T>
 inline bool BinaryTree<T>::findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent)
 {
-	//checks if the search Value is not their
-	if (!searchValue || !find(searchValue))
+	//if it can't find the value 
+	if (!find(searchValue))
 		return false;
 
 	//starts from the root
