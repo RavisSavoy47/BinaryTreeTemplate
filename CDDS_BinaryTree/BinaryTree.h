@@ -141,12 +141,12 @@ inline void BinaryTree<T>::remove(T value)
 	//to remove a leaf
 	if (!nodeToRemove->hasRight() && !nodeToRemove->hasLeft())
 	{
+		if (!nodeParent->getLeft() && !nodeParent->getRight())
+			m_root = nullptr;
 		if (nodeToRemove->getData() < nodeParent->getData())
 			nodeParent->setLeft(nullptr);
-		else if (nodeToRemove->getData() > nodeParent->getData())
+		if (nodeToRemove->getData() > nodeParent->getData())
 			nodeParent->setRight(nullptr);
-		else if (!nodeParent->getLeft() && !nodeParent->getRight())
-			m_root = nullptr;
 		delete nodeToRemove;
 	}
 	//remove a right with a parent or a left with a parent
@@ -197,7 +197,11 @@ inline void BinaryTree<T>::remove(T value)
 
 			nodeToRemove->setData(currentNode->getData());
 
-			nodeParent->setLeft(currentNode->getRight());
+			if (currentNode->hasLeft())
+				nodeParent->setLeft(currentNode->getRight());
+
+			else
+			nodeToRemove->setLeft(nullptr);
 
 			delete currentNode;
 		}
