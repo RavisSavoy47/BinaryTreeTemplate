@@ -143,9 +143,9 @@ inline void BinaryTree<T>::remove(T value)
 	{
 		if (nodeToRemove->getData() < nodeParent->getData())
 			nodeParent->setLeft(nullptr);
-		if (nodeToRemove->getData() > nodeParent->getData())
+		else if (nodeToRemove->getData() > nodeParent->getData())
 			nodeParent->setRight(nullptr);
-		if (!nodeParent->getLeft() && !nodeParent->getRight())
+		else if (!nodeParent->getLeft() && !nodeParent->getRight())
 			m_root = nullptr;
 		delete nodeToRemove;
 	}
@@ -155,19 +155,19 @@ inline void BinaryTree<T>::remove(T value)
 		if (!nodeParent->getLeft() && !nodeParent->getRight() && nodeToRemove->hasLeft())
 			m_root = nodeToRemove->getLeft();
 
-		if (!nodeParent->getLeft() && !nodeParent->getRight() && nodeToRemove->hasRight())
+		else if (!nodeParent->getLeft() && !nodeParent->getRight() && nodeToRemove->hasRight())
 			m_root = nodeToRemove->getRight();
 
-		if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasRight())
+		else if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasRight())
 			nodeParent->setRight(nodeToRemove->getRight());
 
-		if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasLeft())
+		else if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasLeft())
 			nodeParent->setRight(nodeToRemove->getLeft());
 
-		if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasRight())
+		else if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasRight())
 			nodeParent->setLeft(nodeToRemove->getRight());
 
-		if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasLeft())
+		else if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasLeft())
 			nodeParent->setLeft(nodeToRemove->getLeft());
 
 		delete nodeToRemove;
