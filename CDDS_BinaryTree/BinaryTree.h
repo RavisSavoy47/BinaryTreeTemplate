@@ -45,6 +45,14 @@ private:
 	/// <returns>Whether or not a node matching the value could be found</returns>
 	bool findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent);
 
+	/// <summary>
+	/// draws the node 
+	/// </summary>
+	/// <param name=""></param>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <param name="horizontalSpacing"></param>
+	/// <param name="selected"></param>
 	void draw(TreeNode<T>*, int x, int y, int horizontalSpacing, TreeNode<T>* selected = nullptr);
 
 	TreeNode<T>* m_root = nullptr;
@@ -65,6 +73,7 @@ inline BinaryTree<T>::~BinaryTree()
 template<typename T>
 inline bool BinaryTree<T>::isEmpty() const
 {
+	//checks if the root is a null pointer
 	if (m_root == nullptr)
 		return true;
 	return false;
@@ -130,11 +139,13 @@ inline void BinaryTree<T>::insert(T value)
 template<typename T>
 inline void BinaryTree<T>::remove(T value)
 {
+	//creates new nodes for value, parent, current
 	TreeNode<T>* nodeToRemove = new TreeNode<T>(value);
 	TreeNode<T>* nodeParent = new TreeNode<T>();
 	TreeNode<T>* currentNode = nullptr;
 	bool removed = false;
 
+	//checks to see if there is a node
 	if (!findNode(value, nodeToRemove, nodeParent))
 		return;
 
