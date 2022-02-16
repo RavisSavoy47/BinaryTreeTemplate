@@ -33,6 +33,10 @@ public:
 	/// <param name="value">The value of the node to search for</param>
 	TreeNode<T>* find(T value);
 
+	/// <summary>
+	/// Draws the node if it is selected or not.
+	/// </summary>
+	/// <param name="selected"></param>
 	void draw(TreeNode<T>* selected = nullptr);
 
 private:
@@ -46,7 +50,7 @@ private:
 	bool findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent);
 
 	/// <summary>
-	/// draws the node 
+	/// draws the node if it left or right.
 	/// </summary>
 	/// <param name=""></param>
 	/// <param name="x"></param>
@@ -63,11 +67,13 @@ private:
 template<typename T>
 inline BinaryTree<T>::BinaryTree()
 {
+	m_root = nullptr;
 }
 
 template<typename T>
 inline BinaryTree<T>::~BinaryTree()
 {
+	delete m_root;
 }
 
 template<typename T>
@@ -152,8 +158,10 @@ inline void BinaryTree<T>::remove(T value)
 	//to remove a leaf
 	if (!nodeToRemove->hasRight() && !nodeToRemove->hasLeft())
 	{
+		//checks if the parent doesn't have a left and right
 		if (!nodeParent->getLeft() && !nodeParent->getRight())
 			m_root = nullptr;
+		//checks if the 
 		if (nodeToRemove->getData() < nodeParent->getData())
 			nodeParent->setLeft(nullptr);
 		if (nodeToRemove->getData() > nodeParent->getData())

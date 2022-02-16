@@ -49,6 +49,12 @@ public:
 	/// <param name="node">The node to set as this nodes new child</param>
 	void setRight(TreeNode<T>* node);
 
+	/// <summary>
+	/// draws the node to the screen
+	/// </summary>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <param name="selected"></param>
 	void draw(int x, int y, bool selected = false);
 
 private:
