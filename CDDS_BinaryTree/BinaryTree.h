@@ -161,7 +161,6 @@ inline void BinaryTree<T>::remove(T value)
 		//checks if the parent doesn't have a left and right
 		if (!nodeParent->getLeft() && !nodeParent->getRight())
 			m_root = nullptr;
-		//checks if the 
 		if (nodeToRemove->getData() < nodeParent->getData())
 			nodeParent->setLeft(nullptr);
 		if (nodeToRemove->getData() > nodeParent->getData())
